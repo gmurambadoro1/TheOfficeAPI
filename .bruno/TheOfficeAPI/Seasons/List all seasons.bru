@@ -9,3 +9,25 @@ get {
   body: none
   auth: inherit
 }
+
+tests {
+  const chai = require("chai");
+  
+  test('it should return seasons as an array of the correct format', () => {
+    const seasons = res.body;
+  
+    expect(seasons).to.be.an("array");
+    
+    const season = seasons[0] ?? undefined;
+    
+    expect(season).to.be.an("object");
+    expect(season).to.have.property("id");
+    expect(season).to.have.property("number");
+    expect(season).to.have.property("startDate");
+    expect(season).to.have.property("endDate");
+  });
+  
+  
+  
+  
+}

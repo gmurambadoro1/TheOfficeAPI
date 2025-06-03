@@ -1,0 +1,19 @@
+meta {
+  name: List all episodes
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}/episodes?season={{season}}
+  body: none
+  auth: inherit
+}
+
+params:query {
+  season: {{season}}
+}
+
+vars:pre-request {
+  season: 1
+}

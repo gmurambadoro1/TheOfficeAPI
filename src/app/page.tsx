@@ -1,19 +1,21 @@
-import { getAllSeasons } from "@/lib/officeHttpClient";
-import Season from "@/components/Season";
-import { Box } from "@mui/system";
+import { Typography } from "@mui/material";
 
-export default async function Home() {
-  const seasons = await getAllSeasons();
-
-  console.log({ seasons });
-
+export default function Home() {
   return (
     <>
-      {seasons.map((season) => (
-        <Box key={season.id} sx={{ mb: 2 }}>
-          <Season season={season} />
-        </Box>
-      ))}
+      <Typography variant={"h5"} gutterBottom={true}>
+        The Office Home Page
+      </Typography>
+
+      <Typography>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+        convallis efficitur malesuada. Cras ultricies nulla nec feugiat
+        tincidunt. Nulla bibendum ut nulla suscipit condimentum. Lorem ipsum
+        dolor sit amet, consectetur adipiscing elit. Nullam sodales vestibulum
+        mauris, sit amet ultrices arcu lacinia id. Sed congue vitae ipsum vel
+        ultricies. Duis varius nunc bibendum nunc sollicitudin suscipit. In a
+        enim eu quam convallis mattis.{" "}
+      </Typography>
     </>
   );
 }

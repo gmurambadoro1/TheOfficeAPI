@@ -7,6 +7,8 @@ import "@fontsource/roboto/700.css";
 import "./globals.css";
 import { Container } from "@mui/material";
 import Heading from "@/components/Heading";
+import { Grid } from "@mui/system";
+import Sidebar from "@/components/Sidebar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -41,7 +43,12 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <Container>
           <Heading />
-          {children}
+          <Grid container={true} spacing={2}>
+            <Grid size={3}>
+              <Sidebar />
+            </Grid>
+            <Grid size={9}>{children}</Grid>
+          </Grid>
         </Container>
       </body>
     </html>

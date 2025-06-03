@@ -48,8 +48,6 @@ export const getSeasonEpisodes = async (
     }
 
     page++;
-
-    console.log({ page });
   } while (true);
 
   return episodes;

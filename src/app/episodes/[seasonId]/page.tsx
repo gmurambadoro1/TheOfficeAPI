@@ -1,18 +1,28 @@
-import { Typography } from "@mui/material";
+import { Paper, Typography } from "@mui/material";
 import SeasonEpisodes from "@/components/SeasonEpisodes";
+import { Suspense } from "react";
 
 export default async function EpisodePage({
   params,
 }: {
-  params: { seasonId: number };
+  params: Promise<{ seasonId: number }>;
 }) {
+  const { seasonId } = await params;
+
   return (
     <>
-      <Typography variant={"h5"}>Season {params.seasonId}</Typography>
+      <Paper sx={{ padding: 2, marginBottom: 2 }}>
+        <Typography variant={"h5"}>The Office: Season {seasonId}</Typography>
+      </Paper>
 
-      <br />
+      <Typography mt={2} mb={2}>
+        Explore the episodes of Season {seasonId} of The Office. Click on any
+        episode to view its details, including air date, characters and summary.
+      </Typography>
 
-      <SeasonEpisodes seasonId={params.seasonId} />
+      <Suspense fallback={<p>Loading episodes...</p>}>
+        <SeasonEpisodes seasonId={seasonId} />
+      </Suspense>
     </>
   );
 }

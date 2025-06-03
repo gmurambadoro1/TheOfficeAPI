@@ -9,7 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import { format } from "date-fns";
-import { Suspense, useState } from "react";
+import { useState } from "react";
 import { Box } from "@mui/system";
 import EpisodeCharacters from "@/components/EpisodeCharacters";
 
@@ -18,6 +18,10 @@ export default function EpisodeDetail({ episode }: { episode: Episode }) {
 
   const openDrawer = () => setOpen(true);
   const closeDrawer = () => setOpen(false);
+
+  if (!episode) {
+    return null;
+  }
 
   return (
     <>
@@ -46,13 +50,11 @@ export default function EpisodeDetail({ episode }: { episode: Episode }) {
 
       <Drawer open={open} onClose={closeDrawer} anchor={"right"}>
         <Box width={400} p={2}>
-          <Typography>
-            The Office Episode {episode.seriesEpisodeNumber}
+          <Typography variant={"h5"}>
+            The Office Episode {episode.episode} Characters
           </Typography>
 
-          <Suspense>
-            <EpisodeCharacters episode={episode} />
-          </Suspense>
+          <EpisodeCharacters episode={episode} />
         </Box>
       </Drawer>
     </>

@@ -1,5 +1,7 @@
 import axios from "axios";
 import {
+  Character,
+  CharactersResponseSchema,
   Episode,
   EpisodesResponseSchema,
   Pagination,
@@ -8,7 +10,7 @@ import {
 } from "@/lib/schemas";
 
 const instance = axios.create({
-  baseURL: process.env.BASE_URL as string,
+  baseURL: "https://theofficeapi.dev/api",
 });
 
 export const getAllSeasons = async (
@@ -51,4 +53,34 @@ export const getSeasonEpisodes = async (
   } while (true);
 
   return episodes;
+};
+
+export const getCharacters = async (): Promise<Character[]> => {
+  const characters: Character[] = [];
+
+  let page = 1;
+
+  do {
+    const { data } = await instance.get("/characters", {
+      params: {
+        includeEpisodes: true,
+        page: page,
+        limit: 10,
+      },
+    });
+
+    const parsedData = CharactersResponseSchema.parse(data);
+
+    if (parsedData.results.length) {
+      characters.push(...parsedData.results);
+    }
+
+    if (!parsedData.meta.nextPage) {
+      break;
+    }
+
+    page++;
+  } while (true);
+
+  return [...characters];
 };

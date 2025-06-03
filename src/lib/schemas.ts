@@ -37,9 +37,30 @@ export const EpisodeSchema = z.object({
   seasonId: z.number(),
 });
 
+export const CharacterSchema = z.object({
+  id: z.number(),
+  name: z.string(),
+  gender: z.string().nullable(),
+  actor: z.string().nullable(),
+  episodes: z.array(
+    z.object({
+      episode: z.object({
+        id: z.number(),
+        title: z.string(),
+      }),
+    })
+  ),
+});
+
 export const EpisodesResponseSchema = z.object({
   results: z.array(EpisodeSchema),
   meta: PaginationResponseMetaSchema,
 });
 
 export type Episode = z.infer<typeof EpisodeSchema>;
+export type Character = z.infer<typeof CharacterSchema>;
+
+export const CharactersResponseSchema = z.object({
+  results: z.array(CharacterSchema),
+  meta: PaginationResponseMetaSchema,
+});

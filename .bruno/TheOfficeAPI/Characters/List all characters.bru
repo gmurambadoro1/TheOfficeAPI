@@ -1,0 +1,17 @@
+meta {
+  name: List all characters
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}/characters?includeEpisodes=true&limit=10&page=1
+  body: none
+  auth: inherit
+}
+
+params:query {
+  includeEpisodes: true
+  limit: 10
+  page: 1
+}

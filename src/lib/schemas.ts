@@ -14,7 +14,7 @@ export const PaginationSchema = z.object({
   limit: z.number().default(10),
 });
 
-export const PaginationResponseMetaSchema = z.object({
+const PaginationResponseMetaSchema = z.object({
   isFirstPage: z.boolean(),
   isLastPage: z.boolean(),
   currentPage: z.number(),
@@ -25,7 +25,6 @@ export const PaginationResponseMetaSchema = z.object({
 });
 
 export type Season = z.infer<typeof SeasonSchema>;
-export type SeasonsResponse = z.infer<typeof SeasonsResponseSchema>;
 export type Pagination = z.infer<typeof PaginationSchema>;
 
 export const EpisodeSchema = z.object({
@@ -34,7 +33,7 @@ export const EpisodeSchema = z.object({
   summary: z.string(),
   airDate: z.coerce.date(),
   episode: z.string(),
-  seriesEpisodeNumber: z.string(),
+  seriesEpisodeNumber: z.number(),
   seasonId: z.number(),
 });
 
@@ -44,6 +43,3 @@ export const EpisodesResponseSchema = z.object({
 });
 
 export type Episode = z.infer<typeof EpisodeSchema>;
-export type PaginationResponseMeta = z.infer<
-  typeof PaginationResponseMetaSchema
->;

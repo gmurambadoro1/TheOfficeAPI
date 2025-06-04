@@ -9,6 +9,8 @@ import { Container } from "@mui/material";
 import Heading from "@/components/Heading";
 import { Grid } from "@mui/system";
 import Sidebar from "@/components/Sidebar";
+import Providers from "@/app/providers";
+import { ReactNode } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,20 +38,22 @@ export const viewport: Viewport = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <Container>
-          <Heading />
-          <Grid container={true} spacing={2}>
-            <Grid size={3}>
-              <Sidebar />
+        <Providers>
+          <Container>
+            <Heading />
+            <Grid container={true} spacing={2}>
+              <Grid size={3}>
+                <Sidebar />
+              </Grid>
+              <Grid size={9}>{children}</Grid>
             </Grid>
-            <Grid size={9}>{children}</Grid>
-          </Grid>
-        </Container>
+          </Container>
+        </Providers>
       </body>
     </html>
   );

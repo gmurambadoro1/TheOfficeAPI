@@ -54,6 +54,10 @@ export default function EpisodeDetail({ episode }: { episode: Episode }) {
             The Office Episode {episode.episode} Characters
           </Typography>
 
+          <Typography sx={{ color: "text.secondary" }} mt={1}>
+            Aired on {format(episode.airDate, "MMMM dd, yyyy")}
+          </Typography>
+
           <EpisodeCharacters episode={episode} />
         </Box>
       </Drawer>

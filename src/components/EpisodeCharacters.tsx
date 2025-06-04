@@ -27,7 +27,7 @@ export default function EpisodeCharacters({ episode }: { episode: Episode }) {
 
   return (
     <div>
-      <Typography variant="body2" mt={2} mb={2}>
+      <Typography variant="body2" mt={1} mb={2}>
         {episode.summary}
       </Typography>
 

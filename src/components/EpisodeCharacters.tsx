@@ -16,6 +16,7 @@ export default function EpisodeCharacters({ episode }: { episode: Episode }) {
 
       return data as Character[];
     },
+    enabled: Number(episode?.id ?? 0) > 0,
   });
 
   const episodeFilter = (character: Character) => {
@@ -41,7 +42,7 @@ export default function EpisodeCharacters({ episode }: { episode: Episode }) {
                 <Paper key={item.id} sx={{ padding: 2, marginBottom: 2 }}>
                   <Stack>
                     <Typography component={"p"}>
-                      {index + 1}. {item.actor || ""}
+                      {index + 1}. {item.actor || ""} #{item.id}
                     </Typography>
                     <Typography sx={{ color: "text.secondary", mb: 1.5 }}>
                       as {item.name}
